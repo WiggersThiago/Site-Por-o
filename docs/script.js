@@ -1,51 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- LÓGICA PARA O MENU HAMBÚRGUER ---
+    const menuIcon = document.querySelector('.menu-icon');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuIcon.addEventListener('click', () => {
+        // Alterna a classe 'active', que é usada pelo CSS para mostrar/esconder o menu
+        navLinks.classList.toggle('active');
+    });
+
+
     // --- ROLAGEM SUAVE PARA LINKS ÂNCORA ---
     // Esta função é uma alternativa mais robusta ao `scroll-behavior: smooth` do CSS
     // e garante funcionamento em mais navegadores.
-    const navLinks = document.querySelectorAll('nav ul li a[href^="#"]');
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
 
-    navLinks.forEach(link => {
+    anchorLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Previne o comportamento padrão de "pular" para a âncora
             e.preventDefault();
 
-            // Pega o ID da seção de destino (ex: '#equipe')
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
 
             if (targetSection) {
                 targetSection.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'start' // Alinha o topo da seção com o topo da tela
+                    block: 'start'
                 });
+                
+                // Esconde o menu mobile após clicar em um link
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
             }
         });
     });
 
 
     // --- ANIMAÇÃO FADE-IN AO ROLAR A PÁGINA ---
-    // Esta função observa quando um elemento entra na tela e aplica uma classe para animá-lo.
     const fadeInElements = document.querySelectorAll('.fade-in');
 
     const observerOptions = {
-        root: null, // Observa em relação à viewport
+        root: null,
         rootMargin: '0px',
-        threshold: 0.1 // Ativa quando 10% do elemento estiver visível
+        threshold: 0.1
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            // Se o elemento está visível
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Para de observar o elemento para a animação não repetir
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Pede ao observador para "assistir" cada elemento com a classe .fade-in
     fadeInElements.forEach(element => {
         observer.observe(element);
     });
