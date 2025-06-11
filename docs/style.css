@@ -14,6 +14,7 @@ body {
     background-color: #222;
     color: #f4f4f4;
     line-height: 1.6;
+    overflow-x: hidden; /* Previne scroll horizontal */
 }
 
 /* Cabeçalho e Navegação */
@@ -58,6 +59,15 @@ nav ul li a:hover {
     color: #ff8c00;
 }
 
+/* Ícone do Menu Hambúrguer (escondido em telas grandes) */
+.menu-icon {
+    display: none;
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: #f4f4f4;
+}
+
+
 /* Seções Principais */
 section {
     padding: 5rem 5%;
@@ -73,7 +83,7 @@ section h2 {
 
 /* Seção Hero (Início) */
 .hero {
-    min-height: calc(100vh - 80px); /* Subtrai a altura aproximada do header */
+    min-height: calc(100vh - 70px); /* Ajuste de altura */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -148,6 +158,8 @@ section h2 {
     border-radius: 50%;
     margin-bottom: 1rem;
     border: 3px solid #ff8c00;
+    width: 150px; /* Adicionado para consistência */
+    height: 150px; /* Adicionado para consistência */
 }
 
 .team-card h3 {
@@ -169,12 +181,14 @@ section h2 {
 .contact-details p {
     font-size: 1.1rem;
     margin-bottom: 1rem;
+    text-align: left; /* Melhora a leitura em mobile */
 }
 
 .contact-details i {
     color: #ff8c00;
     margin-right: 1rem;
     width: 20px;
+    text-align: center;
 }
 
 .map-placeholder {
@@ -182,9 +196,14 @@ section h2 {
     padding: 0;
     border-radius: 5px;
 }
-.map-placeholder > img{
-    max-width: 600px;
+
+/* Imagem do mapa ajustada para ser responsiva */
+.map-placeholder img {
+    max-width: 100%;
+    height: auto;
+    max-height: 450px;
 }
+
 
 /* Animação de Fade-in */
 .fade-in {
@@ -205,4 +224,123 @@ footer {
     padding: 2rem;
     background-color: #1a1a1a;
     font-size: 0.9rem;
+}
+
+
+/* ========================================= */
+/* MEDIA QUERIES RESPONSIVAS        */
+/* ========================================= */
+
+/* Telas de Tablet (até 768px) */
+@media (max-width: 768px) {
+    
+    /* --- Navegação --- */
+    nav ul {
+        display: none; /* Esconde o menu normal */
+        flex-direction: column;
+        position: absolute;
+        top: 70px; /* Altura do header */
+        left: 0;
+        width: 100%;
+        background-color: #1a1a1a;
+        padding: 1rem 0;
+        gap: 0;
+    }
+
+    nav ul.active {
+        display: flex; /* Mostra o menu quando ativo */
+    }
+
+    nav ul li {
+        text-align: center;
+        width: 100%;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 1rem;
+    }
+
+    .menu-icon {
+        display: block; /* Mostra o ícone do hambúrguer */
+    }
+
+
+    /* --- Seções e Títulos --- */
+    section {
+        padding: 4rem 5%;
+    }
+
+    section h2 {
+        font-size: 2.2rem;
+    }
+
+    /* --- Hero Section --- */
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+}
+
+
+/* Telas de Celular (até 480px) */
+@media (max-width: 480px) {
+    
+    /* --- Geral --- */
+    body {
+        line-height: 1.5;
+    }
+
+    /* --- Cabeçalho --- */
+    nav .logo {
+        font-size: 1.5rem;
+    }
+    
+    /* --- Seções e Títulos --- */
+    section {
+        padding: 3rem 5%;
+    }
+
+    section h2 {
+        font-size: 2rem;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+        min-height: 100vh;
+    }
+    .hero-content {
+        padding: 0 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    /* --- Seção da Equipe --- */
+    .team-card {
+        width: 90%; /* Ocupa quase toda a largura */
+        max-width: 320px; /* Limite máximo */
+    }
+
+    /* --- Seção Contato --- */
+    .contact-details {
+        padding: 0 1rem;
+    }
+
+    .contact-details p {
+        font-size: 1rem;
+    }
 }
