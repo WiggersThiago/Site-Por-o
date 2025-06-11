@@ -283,11 +283,12 @@ footer {
     .hero-content p {
         font-size: 1.1rem;
     }
-    }
-.team-card a{
+    .team-card a{
     text-decoration: none;
     color: #fff;
-}
+    }
+    }
+
 }
 
 
@@ -348,9 +349,10 @@ footer {
     .contact-details p {
         font-size: 1rem;
     }
-    }
-.team-card a{
+    .team-card a{
     text-decoration: none;
     color: #fff;
-}
+    }
+    }
+
 }
