@@ -289,7 +289,7 @@ section {
     3. Se o nome do arquivo for diferente, apenas altere na linha abaixo.
     */
     .hero {
-        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('imagens/hero-mobile.jpg');
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('imagens/hero-mobile.jpeg');
     }
 
 }
